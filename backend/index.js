@@ -10,7 +10,10 @@ const cors = require("cors");
 require("dotenv").config();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "https://ecomadmincom.netlify.app",
+    credentials: true,
+}));
 
 // Database Connection
 
