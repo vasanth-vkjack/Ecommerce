@@ -11,7 +11,7 @@ require("dotenv").config();
 
 app.use(express.json());
 app.use(cors({
-    origin: "https://ecomadmincom.netlify.app",
+    origin: "https://ecom-admin-4c0f.onrender.com",
     origin: "https://ecommercefrntend.netlify.app",
     credentials: true,
 }));
