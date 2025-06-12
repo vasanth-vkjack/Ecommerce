@@ -30,7 +30,7 @@ app.get("/",(req,res)=>{
 // Image Storage Engine
 
 const storage = multer.diskStorage({
-    destination: './upload',
+    destination: './upload/images',
     filename: (req,file,cb)=>{
         return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
 
@@ -40,11 +40,11 @@ const storage = multer.diskStorage({
 const upload = multer({storage:storage})
 
 // Creating Upload Endpoint
-app.use('/upload',express.static('upload'))
+app.use('/images',express.static('upload/images'))
 app.post("/upload",upload.single('product'),(req,res)=>{
     res.json({
         success:1,
-        image_url:`https://${req.get("host")}/${req.file.filename}`
+        image_url:`https://${req.get("host")}/images/${req.file.filename}`
     })
 })
 
