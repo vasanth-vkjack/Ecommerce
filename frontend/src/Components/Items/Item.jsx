@@ -9,7 +9,7 @@ export const Item = (props) => {
       <Link to={`/product/${props.id}`}>
         <img
           onClick={window.scrollTo(0, 0)}
-          src={all_product.map((img)=> img.image)}
+          src={props.image}
           alt=""
         />
       </Link>
