@@ -33,6 +33,11 @@
 .hero-hand-icon img{
     width: 105px;
 }
+.hero-latest-btn a{
+    color: white;
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
 .hero-latest-btn{
     display: flex;
     justify-content: center;

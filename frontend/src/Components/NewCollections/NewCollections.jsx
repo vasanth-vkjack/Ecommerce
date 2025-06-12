@@ -13,7 +13,7 @@ export const NewCollections = () => {
   },[])
 
   return (
-    <div className='new-collection'>
+    <div className='new-collection' id='newcollection'>
         <h1>NEW COLLECTIONS</h1>
         <hr />
         <div className="collections">

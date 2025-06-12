@@ -70,7 +70,7 @@
     .footer-logo img{
         width: 40px;
     }
-    .footer-logop{
+    .footer-logo p{
         font-size: 25px;
     }
     .footer-links{
@@ -83,5 +83,14 @@
     }
     .footer-copyright{
         font-size: 13px;
+    }
+}
+@media(max-width:800px){
+    .footer-links{
+        font-size: 12px;
+        gap: 8px;
+    }
+    .footer{
+        gap: 15px;
     }
 }
