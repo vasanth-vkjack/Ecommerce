@@ -1,7 +1,7 @@
 import React from "react";
 import "./Item.css";
 import { Link } from "react-router";
-import all_product from "../Assets/all_product";
+// import all_product from "../Assets/all_product";
 
 export const Item = (props) => {
   return (
