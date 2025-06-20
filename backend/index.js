@@ -33,7 +33,15 @@ app.get("/", (req, res) => {
 // Image Storage Engine
 
 const storage = multer.diskStorage({
-  destination: "./upload",
+  destination: function (req, file, cb) {
+    const uploadPath = path.join(__dirname, "uploads");
+
+    if (!fs.existsSync(uploadPath)) {
+      fs.mkdirSync(uploadPath);
+    }
+
+    cb(null, uploadPath);
+  },
   filename: (req, file, cb) => {
     return cb(
       null,
@@ -45,12 +53,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Creating Upload Endpoint
-// app.use('/images',express.static('upload/images'))
-app.use("/upload", express.static(path.join(__dirname, "upload")));
+app.use("/uploads", express.static("uploads"));
+// app.use("/upload", express.static(path.join(__dirname, "upload")));
 app.post("/upload", upload.single("product"), (req, res) => {
   res.json({
     success: 1,
-    image_url: `https://${req.get("host")}/upload/${req.file.filename}`,
+    image_url: `https://${req.get("host")}/uploads/${req.file.filename}`,
   });
 });
 
@@ -163,12 +171,10 @@ const Users = mongoose.model("Users", {
 app.post("/signup", async (req, res) => {
   let check = await Users.findOne({ email: req.body.email });
   if (check) {
-    return res
-      .status(400)
-      .json({
-        success: false,
-        errors: "existing user found with same email address",
-      });
+    return res.status(400).json({
+      success: false,
+      errors: "existing user found with same email address",
+    });
   }
   let cart = {};
   for (let i = 0; i < 300; i++) {
