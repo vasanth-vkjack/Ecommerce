@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 // Image Storage Engine
 
 const storage = multer.diskStorage({
-  destination: "./upload/images",
+  destination: "./upload",
   filename: (req, file, cb) => {
     return cb(
       null,
@@ -46,11 +46,11 @@ const upload = multer({ storage: storage });
 
 // Creating Upload Endpoint
 // app.use('/images',express.static('upload/images'))
-app.use("/images", express.static(path.join(__dirname, "upload/images")));
+app.use("/upload", express.static(path.join(__dirname, "upload")));
 app.post("/upload", upload.single("product"), (req, res) => {
   res.json({
     success: 1,
-    image_url: `https://${req.get("host")}/images/${req.file.filename}`,
+    image_url: `https://${req.get("host")}/upload/${req.file.filename}`,
   });
 });
 
